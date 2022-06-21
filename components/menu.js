@@ -1,35 +1,41 @@
-import { useRouter } from "next/router";
+import NextLink from "next/link";
 import useFetch from "../hooks/useFetch";
+import { ListItem, List, LinkBox } from "@chakra-ui/react";
 
 const menuItemsUrl = "http://localhost:3000/api/menu-items";
 
 export default function Menu() {
     const { data: menuItem, isLoading, isError } = useFetch(menuItemsUrl, []);
 
-    const router = useRouter();
-
-    // Probably some hook to recursively walk the menus children in real case.
     return (
         <>
             {isError && <h2>Something went wrong!</h2>}
             {isLoading && "Loading..."}
 
-            <ul>
+            <List paddingLeft="0">
                 {menuItem.map(({ label, url, children }, i) => (
-                    <li key={i}>
-                        <a href={url}>{label}</a>
+                    <ListItem key={i}>
+                        <LinkBox>
+                            <NextLink href={url} passHref>
+                                {label}
+                            </NextLink>
+                        </LinkBox>
                         {children && (
-                            <ul>
-                                {children.map(({ label, url, children }, i) => (
-                                    <li key={i}>
-                                        <a href={url}>{label}</a>
-                                    </li>
+                            <List paddingLeft="15px">
+                                {children.map(({ label, url }, i) => (
+                                    <ListItem key={i}>
+                                        <LinkBox>
+                                            <NextLink href={url} passHref>
+                                                {label}
+                                            </NextLink>
+                                        </LinkBox>
+                                    </ListItem>
                                 ))}
-                            </ul>
+                            </List>
                         )}
-                    </li>
+                    </ListItem>
                 ))}
-            </ul>
+            </List>
         </>
     );
 }

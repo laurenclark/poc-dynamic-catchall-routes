@@ -15,6 +15,7 @@ export default function Home() {
             </Head>
             <FullPageWithSidebar sideBarContent={<Menu />}>
                 <h1>Dynamic Menu PoC</h1>
+                Dashboard
             </FullPageWithSidebar>
         </div>
     );

@@ -1,7 +1,7 @@
 export default function handler(req, res) {
     res.status(200).json([
         {
-            label: "Home",
+            label: "Dashboard",
             url: "/",
             children: []
         },
@@ -20,7 +20,7 @@ export default function handler(req, res) {
                     ]
                 },
                 {
-                    label: "Item One - Child One - Child Two",
+                    label: "Item One - Child Two",
                     url: "/item/one/child/one/child/two",
                     children: [
                         {
@@ -47,7 +47,7 @@ export default function handler(req, res) {
             children: [
                 {
                     label: "Item Four - Child One",
-                    url: "/item/two",
+                    url: "/item/four/child/one",
                     children: [
                         {
                             label: "Item Four - Child One - Child One",
@@ -56,8 +56,8 @@ export default function handler(req, res) {
                     ]
                 },
                 {
-                    label: "Item Four - Child One - Child Two",
-                    url: "/item/four/child/one/child/two",
+                    label: "Item Four - Child Two",
+                    url: "/item/four/child/two",
                     children: [
                         {
                             label: "Item Four - Child Two - Child One",

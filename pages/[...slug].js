@@ -1,13 +1,32 @@
 import { useRouter } from "next/router";
+import Breadcrumb from "../components/Breadcrumb";
+import ItemOne from "../components/ItemOne";
+import ItemTwo from "../components/ItemTwo";
+import FullPageWithSidebar from "../layouts/FullPageWithSidebar";
+import FourOhFour from "../components/FourOhFour";
 
 const Page = () => {
     const router = useRouter();
-    if (String(router.query.slug) === "404") {
-        return "The 404 page.";
-    }
-    const slug = router.query.slug || [];
+    const slug = () => router.query.slug.join(" ");
 
-    return <h1>Breadcrumbs: {slug.join("/")}</h1>;
+    const render = () => {
+        switch (router.asPath) {
+            case "/item/one":
+                return <ItemOne title={slug} />;
+            case "/item/two":
+                return <ItemTwo title={slug} />;
+
+            default:
+                return <FourOhFour />;
+        }
+    };
+
+    return (
+        <FullPageWithSidebar>
+            <Breadcrumb />
+            {!router.isFallback && render()}
+        </FullPageWithSidebar>
+    );
 };
 
 export default Page;
