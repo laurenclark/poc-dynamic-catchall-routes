@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import useFetch from "../hooks/useFetch";
 import { ListItem, List, LinkBox } from "@chakra-ui/react";
 
-const menuItemsUrl = "http://localhost:3000/api/menu-items";
+const menuItemsUrl = "/api/menu-items";
 
 export default function Menu() {
     const { data: menuItem, isLoading, isError } = useFetch(menuItemsUrl, []);
