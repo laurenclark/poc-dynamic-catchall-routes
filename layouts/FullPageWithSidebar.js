@@ -1,15 +1,10 @@
 import Sidebar from "../components/Sidebar";
-import Menu from "../components/Menu";
 
-export default function FullPageWithSidebar({ children }) {
+export default function FullPageWithSidebar({ children, sideBarContent }) {
     return (
         <>
-            <main>
-                <h1>Dynamic Menu PoC</h1>
-            </main>
-            <Sidebar>
-                <Menu />
-            </Sidebar>
+            <main>{children}</main>
+            <Sidebar>{sideBarContent}</Sidebar>
         </>
     );
 }

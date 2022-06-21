@@ -1,10 +1,10 @@
 import Head from "next/head";
 import FullPageWithSidebar from "../layouts/FullPageWithSidebar";
-import styles from "../styles/Home.module.css";
+import Menu from "../components/Menu";
 
 export default function Home() {
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <title>Dynamic Routes POC</title>
                 <meta
@@ -13,9 +13,8 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <FullPageWithSidebar>
-                <>something</>
-                <>something else</>
+            <FullPageWithSidebar sideBarContent={<Menu />}>
+                <h1>Dynamic Menu PoC</h1>
             </FullPageWithSidebar>
         </div>
     );

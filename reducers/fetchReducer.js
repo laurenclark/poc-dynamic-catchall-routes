@@ -1,40 +1,21 @@
-import { useEffect, useReducer } from "react";
-import fetchReducer from "../reducers/fetchReducer";
+import { FETCH_INIT, FETCH_SUCCESS, FETCH_FAILURE } from "../actions/actions";
 
-const useFetch = (url = "", initialData = []) => {
-    const [state, dispatch] = useReducer(fetchReducer, initialState);
-
-    const initialState = {
-        data: initialData,
-        isLoading: false,
-        isError: false
-    };
-
-    useEffect(() => {
-        let isMounted = true;
-        const fetchData = async () => {
-            dispatch({ type: "FETCH_INIT" });
-            try {
-                const response = await fetch(url);
-                const json = await response.json();
-                if (isMounted) {
-                    dispatch({ type: "FETCH_SUCCESS", payload: json });
-                }
-            } catch (error) {
-                if (isMounted) {
-                    dispatch({ type: "FETCH_FAILURE" });
-                }
-            }
-        };
-
-        fetchData();
-
-        return () => {
-            isMounted = false;
-        };
-    }, [url]);
-
-    return state;
+const fetchReducer = (state, action) => {
+    switch (action.type) {
+        case FETCH_INIT:
+            return { ...state, isLoading: true, isError: false };
+        case FETCH_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                isError: false,
+                data: action.payload
+            };
+        case FETCH_FAILURE:
+            return { ...state, isLoading: false, isError: true };
+        default:
+            return { ...state };
+    }
 };
 
-export default useFetch;
+export default fetchReducer;
