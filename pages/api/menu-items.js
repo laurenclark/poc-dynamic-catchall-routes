@@ -7,25 +7,25 @@ export default function handler(req, res) {
         },
         {
             label: "Item One",
-            url: "https://blah.com",
+            url: "/item/one",
             children: [
                 {
                     label: "Item One - Child One",
-                    url: "https://blah.com",
+                    url: "/item/one/child/one",
                     children: [
                         {
                             label: "Item One - Child One - Child One",
-                            url: "https://blah.com"
+                            url: "/item/one/child/one/child/one"
                         }
                     ]
                 },
                 {
                     label: "Item One - Child One - Child Two",
-                    url: "https://blah.com",
+                    url: "/item/one/child/one/child/two",
                     children: [
                         {
                             label: "Item One - Child Two - Child One",
-                            url: "https://blah.com"
+                            url: "/item/one/child/two/child/one"
                         }
                     ]
                 }
@@ -33,35 +33,35 @@ export default function handler(req, res) {
         },
         {
             label: "Item Two",
-            url: "https://blah.com",
+            url: "/item/two",
             children: []
         },
         {
             label: "Item Three",
-            url: "https://blah.com",
+            url: "/item/three",
             children: []
         },
         {
             label: "Item Four",
-            url: "https://blah.com",
+            url: "/item/four",
             children: [
                 {
                     label: "Item Four - Child One",
-                    url: "https://blah.com",
+                    url: "/item/two",
                     children: [
                         {
                             label: "Item Four - Child One - Child One",
-                            url: "https://blah.com"
+                            url: "/item/four/child/one/child/one"
                         }
                     ]
                 },
                 {
                     label: "Item Four - Child One - Child Two",
-                    url: "https://blah.com",
+                    url: "/item/four/child/one/child/two",
                     children: [
                         {
                             label: "Item Four - Child Two - Child One",
-                            url: "https://blah.com"
+                            url: "/item/four/child/two/child/one"
                         }
                     ]
                 }
