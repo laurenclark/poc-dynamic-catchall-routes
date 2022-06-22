@@ -7,7 +7,7 @@ import FourOhFour from "../components/FourOhFour";
 
 const Page = () => {
     const router = useRouter();
-    const slug = router.query.slug.join(" ");
+    const slug = router?.query?.slug?.join(" ");
 
     const render = () => {
         switch (router.asPath) {

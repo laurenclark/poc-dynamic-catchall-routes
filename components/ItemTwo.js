@@ -6,7 +6,7 @@ export default function ItemTwo({ title }) {
             <Head>
                 <title>{title}</title>
             </Head>
-            Item Two
+            <h1>Item Two</h1>
         </>
     );
 }
