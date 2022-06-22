@@ -1,6 +1,7 @@
 import Head from "next/head";
 import FullPageWithSidebar from "../layouts/FullPageWithSidebar";
 import Menu from "../components/Menu";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default function Home() {
     return (
@@ -14,6 +15,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <FullPageWithSidebar sideBarContent={<Menu />}>
+                <Breadcrumb />
                 <h1>Dynamic Menu PoC</h1>
                 Dashboard
             </FullPageWithSidebar>
