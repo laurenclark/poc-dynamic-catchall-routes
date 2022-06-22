@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Box } from "@chakra-ui/react";
 
-export default function Sidebar({ children }) {
+function Sidebar({ children }) {
     return (
         <Box
             position="absolute"
@@ -22,3 +23,5 @@ export default function Sidebar({ children }) {
         </Box>
     );
 }
+
+export default memo(Sidebar);

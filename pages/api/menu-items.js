@@ -15,13 +15,13 @@ export default function handler(req, res) {
                     children: [
                         {
                             label: "Item One - Child One - Child One",
-                            url: "/item/one/child/one/child/one"
+                            url: "/item/one/child/one"
                         }
                     ]
                 },
                 {
                     label: "Item One - Child Two",
-                    url: "/item/one/child/one/child/two",
+                    url: "/item/one/child/two",
                     children: [
                         {
                             label: "Item One - Child Two - Child One",

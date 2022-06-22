@@ -8,15 +8,15 @@ export default function Breadcrumb() {
     return (
         <Box marginTop="20px">
             <span>
-                Breadcrumb:
+                Breadcrumb:&nbsp;
                 {router.asPath === "/" && (
                     <Link color="navy" href="/">
-                        &nbsp;Dashboard
+                        Dashboard
                     </Link>
                 )}
                 {slug.map((link, i) => (
                     <span key={i}>
-                        <Link color="navy" href={`/${link}`}>
+                        <Link color="navy" href={`/${slug[i]}`}>
                             {link}
                         </Link>
                         {slug.length > 1 && i !== slug.length - 1 && " > "}
