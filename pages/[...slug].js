@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Breadcrumb from "../components/Breadcrumb";
+import Breadcrumbs from "../components/Breadcrumb";
 import ItemOne from "../components/ItemOne";
 import ItemTwo from "../components/ItemTwo";
 import FullPageWithSidebar from "../layouts/FullPageWithSidebar";
@@ -23,7 +23,7 @@ const Page = () => {
 
     return (
         <FullPageWithSidebar>
-            <Breadcrumb />
+            <Breadcrumbs />
             {!router.isFallback && render()}
         </FullPageWithSidebar>
     );
