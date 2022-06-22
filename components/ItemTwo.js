@@ -7,6 +7,7 @@ export default function ItemTwo({ title }) {
                 <title>{title}</title>
             </Head>
             <h1>Item Two</h1>
+            This could have wildly different content and structure.
         </>
     );
 }
