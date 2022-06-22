@@ -8,7 +8,7 @@ export default function FullPageWithSidebar({
 }) {
     return (
         <Box width="100vw" height="100vh">
-            <Box marginLeft="250px" marginBottom="100px ">
+            <Box marginLeft="350px" marginBottom="100px ">
                 {children}
             </Box>
             <Sidebar>{sideBarContent}</Sidebar>

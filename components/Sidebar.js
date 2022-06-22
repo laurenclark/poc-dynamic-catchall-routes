@@ -6,7 +6,7 @@ export default function Sidebar({ children }) {
             position="absolute"
             top="0"
             height="calc(100vh - 100px)"
-            width="250px"
+            width="350px"
             sx={{ fontWeight: "bold" }}>
             <Box
                 position="absolute"
