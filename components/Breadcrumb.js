@@ -15,10 +15,7 @@ export default function Breadcrumbs() {
             )}
             {slug.map((link, i) => (
                 <BreadcrumbItem key={i}>
-                    <BreadcrumbLink
-                        href={`/${slug
-                            .filter((item) => item !== current)
-                            .join("/")}`}>
+                    <BreadcrumbLink href={`/${slug.slice(i).join("/")}`}>
                         {link}({i})
                     </BreadcrumbLink>
                 </BreadcrumbItem>
