@@ -6,62 +6,62 @@ export default function handler(req, res) {
             children: []
         },
         {
-            label: "Item One",
-            url: "/item/one",
+            label: "One",
+            url: "/one",
             children: [
                 {
-                    label: "Item One - Child One",
-                    url: "/item/one/child/one",
+                    label: "One - Child One",
+                    url: "/one/child-one",
                     children: [
                         {
-                            label: "Item One - Child One - Child One",
-                            url: "/item/one/child/one"
+                            label: "One - Child One - Child One",
+                            url: "/one/child-one"
                         }
                     ]
                 },
                 {
-                    label: "Item One - Child Two",
-                    url: "/item/one/child/two",
+                    label: "One - Child Two",
+                    url: "/one/child-two",
                     children: [
                         {
-                            label: "Item One - Child Two - Child One",
-                            url: "/item/one/child/two/child/one"
+                            label: "One - Child Two - Child One",
+                            url: "/one/child-two/child-one"
                         }
                     ]
                 }
             ]
         },
         {
-            label: "Item Two",
-            url: "/item/two",
+            label: "Two",
+            url: "/two",
             children: []
         },
         {
-            label: "Item Three",
-            url: "/item/three",
+            label: "Three",
+            url: "/three",
             children: []
         },
         {
-            label: "Item Four",
-            url: "/item/four",
+            label: "Four",
+            url: "/four",
             children: [
                 {
-                    label: "Item Four - Child One",
-                    url: "/item/four/child/one",
+                    label: "Four - Child One",
+                    url: "/four/child-one",
                     children: [
                         {
-                            label: "Item Four - Child One - Child One",
-                            url: "/item/four/child/one/child/one"
+                            label: "Four - Child One - Child One",
+                            url: "/four/child-one/child-one"
                         }
                     ]
                 },
                 {
-                    label: "Item Four - Child Two",
-                    url: "/item/four/child/two",
+                    label: "Four - Child Two",
+                    url: "/four/child-two",
                     children: [
                         {
-                            label: "Item Four - Child Two - Child One",
-                            url: "/item/four/child/two/child/one"
+                            label: "Four - Child Two - Child One",
+                            url: "/four/child-two/child-one"
                         }
                     ]
                 }

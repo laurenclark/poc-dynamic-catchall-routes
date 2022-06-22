@@ -4,6 +4,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 export default function Breadcrumbs() {
     const router = useRouter();
     const slug = router.query.slug || [];
+    const current = router.asPath.split("/").pop();
 
     return (
         <Breadcrumb separator=">">
@@ -13,8 +14,13 @@ export default function Breadcrumbs() {
                 </BreadcrumbItem>
             )}
             {slug.map((link, i) => (
-                <BreadcrumbItem>
-                    <BreadcrumbLink href={`/${slug[i]}`}>{link}</BreadcrumbLink>
+                <BreadcrumbItem key={i}>
+                    <BreadcrumbLink
+                        href={`/${slug
+                            .filter((item) => item !== current)
+                            .join("/")}`}>
+                        {link}({i})
+                    </BreadcrumbLink>
                 </BreadcrumbItem>
             ))}
         </Breadcrumb>

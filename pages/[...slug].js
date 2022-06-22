@@ -11,9 +11,9 @@ const Page = () => {
 
     const render = () => {
         switch (router.asPath) {
-            case "/item/one":
+            case "/one":
                 return <ItemOne title={slug} />;
-            case "/item/two":
+            case "/two":
                 return <ItemTwo title={slug} />;
 
             default:
