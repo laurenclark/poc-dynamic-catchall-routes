@@ -1,33 +1,26 @@
 import { memo } from "react";
 import NextLink from "next/link";
-import useFetch from "../hooks/useFetch";
+
 import { ListItem, List, LinkBox } from "@chakra-ui/react";
 
-const menuItemsUrl = "/api/menu-items";
-
-function Menu() {
-    const { data: menuItem, isLoading, isError } = useFetch(menuItemsUrl, []);
-
+function Menu({ menuItems }) {
     return (
         <>
-            {isError && <h2>Something went wrong!</h2>}
-            {isLoading && "Loading..."}
-
             <List paddingLeft="0">
-                {menuItem.map(({ label, url, children }, i) => (
+                {menuItems?.map(({ name, url, children }, i) => (
                     <ListItem key={i}>
                         <LinkBox>
                             <NextLink href={url} passHref>
-                                {label}
+                                {name}
                             </NextLink>
                         </LinkBox>
                         {children && (
                             <List paddingLeft="15px">
-                                {children.map(({ label, url }, i) => (
+                                {children.map(({ name, url }, i) => (
                                     <ListItem key={i}>
                                         <LinkBox>
                                             <NextLink href={url} passHref>
-                                                {label}
+                                                {name}
                                             </NextLink>
                                         </LinkBox>
                                     </ListItem>

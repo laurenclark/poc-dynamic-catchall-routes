@@ -1,9 +1,8 @@
 import Head from "next/head";
-import FullPageWithSidebar from "../layouts/FullPageWithSidebar";
-import Menu from "../components/Menu";
-import Breadcrumbs from "../components/Breadcrumb";
 
-export default function Home() {
+import MerlinPage from "./[...slug]";
+
+export default function Home({ menuData }) {
     return (
         <div>
             <Head>
@@ -14,11 +13,7 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <FullPageWithSidebar sideBarContent={<Menu />}>
-                <Breadcrumbs />
-                <h1>Dynamic Menu PoC</h1>
-                Dashboard
-            </FullPageWithSidebar>
+            <MerlinPage menuData={menuData} />
         </div>
     );
 }
