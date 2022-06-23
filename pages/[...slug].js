@@ -1,32 +1,16 @@
 import { useRouter } from "next/router";
-import Breadcrumbs from "../components/Breadcrumb";
-import ItemOne from "../components/ItemOne";
-import ItemTwo from "../components/ItemTwo";
+import Header from "../components/Header";
 import FullPageWithSidebar from "../layouts/FullPageWithSidebar";
-import FourOhFour from "../components/FourOhFour";
 
-const Page = () => {
+const MerlinPage = () => {
     const router = useRouter();
-    const slug = router?.query?.slug?.join(" ");
-
-    const render = () => {
-        switch (router.asPath) {
-            case "/one":
-                return <ItemOne title={slug} />;
-            case "/two":
-                return <ItemTwo title={slug} />;
-
-            default:
-                return <FourOhFour />;
-        }
-    };
+    // const slug = router?.query?.slug?.join(" ");
 
     return (
         <FullPageWithSidebar>
-            <Breadcrumbs />
-            {!router.isFallback && render()}
+            <Header />
         </FullPageWithSidebar>
     );
 };
 
-export default Page;
+export default MerlinPage;
