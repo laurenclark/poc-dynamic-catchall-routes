@@ -1,18 +1,28 @@
 import { useRouter } from "next/router";
-import Menu from "../components/Menu";
-import Header from "../components/Header";
 import FullPageWithSidebar from "../layouts/FullPageWithSidebar";
+import FourOhFour from "../components/FourOhFour";
+import Home from "./index";
 
-const MerlinPage = ({ menuData }) => {
-    const { data: menuItems, isLoading, isError } = menuData;
+const Page = () => {
     const router = useRouter();
-    // const slug = router?.query?.slug?.join(" ");
+    const slug = router?.query?.slug?.join(" ");
+
+    const render = () => {
+        console.log(router.asPath);
+        switch (router.asPath) {
+            case "/":
+                return <Home />;
+
+            default:
+                return <FourOhFour />;
+        }
+    };
 
     return (
-        <FullPageWithSidebar sideBarContent={<Menu menuItems={menuItems} />}>
-            <Header />
+        <FullPageWithSidebar>
+            {!router.isFallback && render()}
         </FullPageWithSidebar>
     );
 };
 
-export default MerlinPage;
+export default Page;

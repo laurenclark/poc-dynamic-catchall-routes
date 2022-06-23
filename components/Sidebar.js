@@ -6,7 +6,7 @@ function Sidebar({ children }) {
         <Box
             position="absolute"
             top="0"
-            height="calc(100vh - 100px)"
+            height="100vh"
             width="350px"
             sx={{ fontWeight: "bold" }}>
             <Box
@@ -14,8 +14,7 @@ function Sidebar({ children }) {
                 overflowY="scroll"
                 width="100%"
                 height="100%"
-                paddingX="5px"
-                color="orange">
+                paddingX="5px">
                 <Box paddingTop="20px" paddingX="15px" marginBottom="20px">
                     {children}
                 </Box>

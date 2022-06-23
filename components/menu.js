@@ -9,17 +9,23 @@ function Menu({ menuItems }) {
             <List paddingLeft="0">
                 {menuItems?.map(({ name, url, children }, i) => (
                     <ListItem key={i}>
-                        <LinkBox>
-                            <NextLink href={url} passHref>
-                                {name}
-                            </NextLink>
-                        </LinkBox>
+                        {!children ? (
+                            <LinkBox color="orange">
+                                <NextLink href={url || "/"} passHref>
+                                    {name}
+                                </NextLink>
+                            </LinkBox>
+                        ) : (
+                            <>{name} ▼</>
+                        )}
                         {children && (
                             <List paddingLeft="15px">
-                                {children.map(({ name, url }, i) => (
+                                {children.map(({ name, url, children }, i) => (
                                     <ListItem key={i}>
-                                        <LinkBox>
-                                            <NextLink href={url} passHref>
+                                        <LinkBox color="gold">
+                                            <NextLink
+                                                href={url || "/"}
+                                                passHref>
                                                 {name}
                                             </NextLink>
                                         </LinkBox>
