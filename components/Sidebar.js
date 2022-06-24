@@ -15,12 +15,10 @@ function Sidebar({ children }) {
                 width="100%"
                 height="100%"
                 paddingX="5px">
-                <Box paddingTop="20px" paddingX="15px" marginBottom="20px">
-                    {children}
-                </Box>
+                {children}
             </Box>
         </Box>
     );
 }
 
-export default memo(Sidebar);
+export default Sidebar;

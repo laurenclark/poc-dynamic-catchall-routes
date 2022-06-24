@@ -4,19 +4,19 @@ import FourOhFour from "../components/FourOhFour";
 import Home from "./index";
 
 const Page = () => {
-    const router = useRouter();
-    const slug = router?.query?.slug?.join(" ");
+    // const router = useRouter();
+    // const slug = router?.query?.slug?.join(" ");
 
-    const render = () => {
-        console.log(router.asPath);
-        switch (router.asPath) {
-            case "/":
-                return <Home />;
+    // const render = () => {
+    //     console.log(router.asPath);
+    //     switch (router.asPath) {
+    //         case "/":
+    //             return <Home />;
 
-            default:
-                return <FourOhFour />;
-        }
-    };
+    //         default:
+    //             return <FourOhFour />;
+    //     }
+    // };
 
     return (
         <FullPageWithSidebar>

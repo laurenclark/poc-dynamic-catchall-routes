@@ -3,10 +3,32 @@ import NextLink from "next/link";
 
 import { ListItem, List, LinkBox } from "@chakra-ui/react";
 
+const createMenu = (items) => {
+    return (
+        <List>
+            {items?.map(({ name, url, children }, i) => (
+                <ListItem key={i}>
+                    {!children ? (
+                        <LinkBox color="orange">
+                            <NextLink href={url || "/"} passHref>
+                                {name}
+                            </NextLink>
+                        </LinkBox>
+                    ) : (
+                        <>
+                            {name} func ▼{createMenu(children)}
+                        </>
+                    )}
+                </ListItem>
+            ))}
+        </List>
+    );
+};
+
 function Menu({ menuItems }) {
     return (
         <>
-            <List paddingLeft="0">
+            <List padding="0">
                 {menuItems?.map(({ name, url, children }, i) => (
                     <ListItem key={i}>
                         {!children ? (
@@ -16,22 +38,9 @@ function Menu({ menuItems }) {
                                 </NextLink>
                             </LinkBox>
                         ) : (
-                            <>{name} ▼</>
-                        )}
-                        {children && (
-                            <List paddingLeft="15px">
-                                {children.map(({ name, url, children }, i) => (
-                                    <ListItem key={i}>
-                                        <LinkBox color="gold">
-                                            <NextLink
-                                                href={url || "/"}
-                                                passHref>
-                                                {name}
-                                            </NextLink>
-                                        </LinkBox>
-                                    </ListItem>
-                                ))}
-                            </List>
+                            <>
+                                {name} orig ▼{createMenu(children)}
+                            </>
                         )}
                     </ListItem>
                 ))}
@@ -40,4 +49,4 @@ function Menu({ menuItems }) {
     );
 }
 
-export default memo(Menu);
+export default Menu;
