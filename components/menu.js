@@ -3,28 +3,38 @@ import NextLink from "next/link";
 import { ListItem, List, LinkBox } from "@chakra-ui/react";
 
 const createMenu = (items) => {
-    const withoutChildren = ({ name, url }) => (
+    const withoutChildren = (item) => (
         <LinkBox color="orange">
-            <NextLink href={url || "/"} passHref>
-                {name}
+            <NextLink
+                href={{
+                    pathname: item.url || "/",
+                    query: {
+                        name: item.name,
+                        id: item.id,
+                        can_code: item.can_code
+                    }
+                }}
+                passHref>
+                {item.name}
             </NextLink>
         </LinkBox>
     );
 
-    const withChildren = ({ name, children }) => (
+    const withChildren = (item) => (
         <>
-            {name} ▼{createMenu(children)}
+            {item.name} ▼{createMenu(item.children)}
         </>
     );
     return (
         <List>
-            {items?.map(({ name, url, children }, i) => (
-                <ListItem key={i}>
-                    {!children
-                        ? withoutChildren({ name, url })
-                        : withChildren({ name, children })}
-                </ListItem>
-            ))}
+            {items?.map((item, i) => {
+                const { children } = item;
+                return (
+                    <ListItem key={i}>
+                        {!children ? withoutChildren(item) : withChildren(item)}
+                    </ListItem>
+                );
+            })}
         </List>
     );
 };
