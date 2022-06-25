@@ -11,11 +11,12 @@ const Page = ({ menuData }) => {
     const query = router.query;
 
     const render = () => {
-        // Potentiall handles 404
+        // Potentially handles 404
         if (!query.id) return <FourOhFour />;
 
         // Handles the route
         switch (router.asPath) {
+            // If we want to NOT serve something dynamic through catch-all routing, we do this:
             case "/break-out":
                 return <GenericComponent />;
 
@@ -24,6 +25,7 @@ const Page = ({ menuData }) => {
                     <FullPageWithSidebar
                         sideBarContent={<Menu menuItems={menuItems} />}>
                         <Header title={router.query.name} />
+                        {/* We have the id - and can now use getStaticProps() to call api and build the page */}
                         <p>
                             <strong>id:</strong>
                             {query.id}
