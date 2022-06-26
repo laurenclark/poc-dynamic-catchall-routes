@@ -9,7 +9,7 @@ const createMenu = (items) => {
                 href={{
                     pathname: item.url || "/",
                     query: {
-                        name: item.name,
+                        header: item.header,
                         id: item.id,
                         can_code: item.can_code
                     }
