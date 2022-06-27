@@ -7,36 +7,19 @@ import Menu from "../components/Menu";
 import Header from "../components/Header";
 import GenericComponent from "../components/GenericComponent";
 
-const Page = ({ menuData }) => {
-    const [pageData, setPageData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
-
-    const { data: menuItems } = menuData;
-
+const Page = (props) => {
+    const { data: menuItems } = props.menuData;
+    const pageData = props?.pageProps[0];
     const router = useRouter();
     const query = router.query;
 
-    useEffect(() => {
-        const url = `/api/151`;
-        const fetchData = async () => {
-            try {
-                // Await the first and then the second
-                const response = await fetch(url);
-                const json = await response.json();
-                setPageData(json);
-            } catch (error) {
-                setIsError(true);
-                console.error(error);
-            }
-            setIsLoading(false);
-        };
-        fetchData();
-    }, []);
+    console.log(props);
+
+    const breakOutPaths = ["/break-out"];
 
     const render = () => {
-        // Potentially handles 404
-        if (!query.id) return <ErrorPage statusCode={404} />;
+        if (!query.id && !router.asPath.includes(breakOutPaths))
+            return <ErrorPage statusCode={404} />;
 
         // Handles the route
         switch (router.asPath) {
@@ -50,11 +33,12 @@ const Page = ({ menuData }) => {
                         sideBarContent={<Menu menuItems={menuItems} />}>
                         <Header
                             title={router.query.header}
-                            buttonText={pageData[0]?.buttonText}
+                            buttonText={pageData?.buttonText}
                         />
                         {/* We have the id - we should be able to use getStaticProps() 
                         to call api and build the page, this gets passed in via props at Page({menuItems}, props) 
                         */}
+                        <p>Passed by the router and ?query params</p>
                         <p>
                             <strong>id:</strong>
                             {query.id}
@@ -63,8 +47,24 @@ const Page = ({ menuData }) => {
                             <strong>can_code:</strong>
                             {query.can_code}
                         </p>
-                        <pre>{pageData && pageData[0]?.id}</pre>
-                        <p>{pageData && pageData[0]?.content}</p>
+
+                        <br></br>
+                        <hr />
+                        <br></br>
+
+                        {/* getStaticProps not working but we can just fetch() */}
+                        <h3>
+                            Passed by the Page's Props from
+                            <code> getStaticProps()</code>
+                        </h3>
+                        <br></br>
+                        <p>Content: {pageData && pageData.content}</p>
+                        <br></br>
+                        <pre>ButtonText: {pageData && pageData.buttonText}</pre>
+                        <br></br>
+                        <pre>
+                            isPortlet: {pageData && String(pageData.isPortlet)}
+                        </pre>
                     </FullPageWithSidebar>
                 );
         }
@@ -76,20 +76,21 @@ const Page = ({ menuData }) => {
 // Return a list of possible value for id
 // We'll pre-render only these paths at build time.
 export async function getStaticPaths() {
-    const menuItemsUrl = "/api/menu-obj";
+    // const menuItemsUrl = "/api/menu-obj";
 
-    const { data: menuItems } = fetch(menuItemsUrl)
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((err) => console.error(err));
+    // const { data: menuItems } = fetch(menuItemsUrl)
+    //     .then((response) => response.json())
+    //     .then((data) => data)
+    //     .catch((err) => console.error(err));
 
-    const paths = menuItems?.map((item) =>
-        item.url !== null
-            ? `http://localhost.com/${item.url}`
-            : "http://localhost.com/empty"
-    );
+    // const paths = menuItems?.map((item) =>
+    //     item.url !== null
+    //         ? `http://localhost.com/${item.url}`
+    //         : "http://localhost.com/empty"
+    // );
 
-    return { paths: ["/membership", "/two", "/three"], fallback: false };
+    // Ive used some dummy array here because I'd need to crawl all the children recursively!
+    return { paths: ["/membership", "/two", "/three"], fallback: "blocking" };
 }
 
 // ** getStaticProps() **********************************
@@ -99,18 +100,88 @@ export async function getStaticPaths() {
 //     make sure to resolve them first!”
 
 export async function getStaticProps({ params }) {
-    const url = `/api/${params.id}`;
-    console.log(url);
-    // const data = fetch(url)
-    //     .then((response) => response.json())
-    //     .then((data) => data)
-    //     .catch((err) => console.error(err));
+    // const url = `/api/${params.id}`;
+    const url = `http:/localhost:3000/api/151`;
 
+    const pageData = await fetch(url)
+        .then((response) => response.json())
+        .then((data) => data)
+        .catch((err) => console.error(err));
+
+    // Expects an object
     return {
-        props: {
-            data: ["thing"]
-        }
+        props: { pageProps: [...pageData] }
     };
 }
 
 export default Page;
+
+// export async function getStaticProps({ params, preview, previewData }) {
+//     const postResults = await fetchGraphql(
+//         process.env.STRAPI_URL,
+//         `
+//         query{
+//         blogPosts(where: {slug: "${params.slug}"}){
+//             id
+//             title
+//             date
+//             slug
+//             content
+//             excerpt
+//             author {
+//                 name
+//                 picture {
+//                     url
+//                 }
+//             }
+//             coverImage {
+//                 url
+//             }
+//         }
+//         }
+//     `
+//     );
+//     const post = postResults.data.blogPosts[0];
+
+//     if (preview) {
+//         return {
+//             props: {
+//                 post: {
+//                     ...post
+//                 },
+//                 preview,
+//                 ...previewData
+//             }
+//         };
+//     }
+//     return {
+//         props: {
+//             post: {
+//                 ...post
+//             },
+//             preview: false
+//         }
+//     };
+// }
+
+// export async function getStaticPaths() {
+//     const postResults = await fetchGraphql(
+//         process.env.STRAPI_URL,
+//         `query{
+//             blogPosts{
+//                 slug
+//             }
+//         }`
+//     );
+
+//     return {
+//         paths: postResults.data.blogPosts.map((post) => {
+//             return {
+//                 params: {
+//                     slug: post.slug
+//                 }
+//             };
+//         }),
+//         fallback: false
+//     };
+// }
