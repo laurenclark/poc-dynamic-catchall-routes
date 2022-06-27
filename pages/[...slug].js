@@ -18,6 +18,7 @@ const Page = (props) => {
     const breakOutPaths = ["/break-out"];
 
     const render = () => {
+        // Handle 404s
         if (!query.id && !router.asPath.includes(breakOutPaths))
             return <ErrorPage statusCode={404} />;
 
@@ -58,12 +59,20 @@ const Page = (props) => {
                             <code> getStaticProps()</code>
                         </h3>
                         <br></br>
-                        <p>Content: {pageData && pageData.content}</p>
+                        <code>
+                            <strong>Content:</strong>
+                            {pageData && pageData.content}
+                        </code>
                         <br></br>
-                        <pre>ButtonText: {pageData && pageData.buttonText}</pre>
                         <br></br>
                         <pre>
-                            isPortlet: {pageData && String(pageData.isPortlet)}
+                            <strong>ButtonText:</strong>
+                            {pageData && pageData.buttonText}
+                        </pre>
+                        <br></br>
+                        <pre>
+                            <strong>isPortlet:</strong>:
+                            {pageData && String(pageData.isPortlet)}
                         </pre>
                     </FullPageWithSidebar>
                 );
