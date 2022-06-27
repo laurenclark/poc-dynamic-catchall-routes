@@ -37,7 +37,7 @@ const Page = (props) => {
                             buttonText={pageData?.buttonText}
                         />
                         {/* We have the id - we should be able to use getStaticProps() 
-                        to call api and build the page, this gets passed in via props at Page({menuItems}, props) 
+                        to call api and build the page, this gets passed in via props at Page(props) 
                         */}
                         <p>Passed by the router and ?query params</p>
                         <p>
@@ -52,8 +52,6 @@ const Page = (props) => {
                         <br></br>
                         <hr />
                         <br></br>
-
-                        {/* getStaticProps not working but we can just fetch() */}
                         <h3>
                             Passed by the Page's Props from
                             <code> getStaticProps()</code>
