@@ -6,7 +6,8 @@ export default function Home({ menuData }) {
     const { data: menuItems } = menuData;
     return (
         <FullPageWithSidebar sideBarContent={<Menu menuItems={menuItems} />}>
-            <Header />
+            <Header title={"Dashboard"} />
+            sdfsdf
         </FullPageWithSidebar>
     );
 }

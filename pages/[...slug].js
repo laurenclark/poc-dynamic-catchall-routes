@@ -90,6 +90,8 @@ export async function getStaticPaths() {
     //     .then((data) => data)
     //     .catch((err) => console.error(err));
 
+    // We would need to build this up including the helper
+    // function which will give us the string even when url is null
     // const paths = menuItems?.map((item) =>
     //     item.url !== null
     //         ? `http://localhost.com/${item.url}`
@@ -107,6 +109,7 @@ export async function getStaticPaths() {
 //     make sure to resolve them first!”
 
 export async function getStaticProps({ params }) {
+    // This should come from building getStaticPaths() and the current Id
     // const url = `/api/${params.id}`;
     const url = `http:/localhost:3000/api/151`;
 
@@ -123,7 +126,9 @@ export async function getStaticProps({ params }) {
 
 export default Page;
 
-// export async function getStaticProps({ params, preview, previewData }) {
+// This is how I've done it before with GraphQL
+
+// export async function getStaticProps({ params}) {
 //     const postResults = await fetchGraphql(
 //         process.env.STRAPI_URL,
 //         `
@@ -150,17 +155,7 @@ export default Page;
 //     );
 //     const post = postResults.data.blogPosts[0];
 
-//     if (preview) {
-//         return {
-//             props: {
-//                 post: {
-//                     ...post
-//                 },
-//                 preview,
-//                 ...previewData
-//             }
-//         };
-//     }
+//
 //     return {
 //         props: {
 //             post: {
