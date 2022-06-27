@@ -26,7 +26,7 @@ const createMenu = (items) => {
         </>
     );
     return (
-        <List>
+        <List paddingLeft="25px">
             {items?.map((item, i) => {
                 const { children } = item;
                 return (
