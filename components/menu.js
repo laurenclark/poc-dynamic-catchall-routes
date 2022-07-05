@@ -1,44 +1,44 @@
-import { memo } from "react";
 import NextLink from "next/link";
-import useFetch from "../hooks/useFetch";
+
 import { ListItem, List, LinkBox } from "@chakra-ui/react";
 
-const menuItemsUrl = "/api/menu-items";
+const createMenu = (items) => {
+    const withoutChildren = (item) => (
+        <LinkBox color="orange">
+            <NextLink
+                href={{
+                    pathname: item.url || "/",
+                    query: {
+                        header: item.header,
+                        id: item.id,
+                        can_code: item.can_code
+                    }
+                }}
+                passHref>
+                {item.name}
+            </NextLink>
+        </LinkBox>
+    );
 
-function Menu() {
-    const { data: menuItem, isLoading, isError } = useFetch(menuItemsUrl, []);
-
-    return (
+    const withChildren = (item) => (
         <>
-            {isError && <h2>Something went wrong!</h2>}
-            {isLoading && "Loading..."}
-
-            <List paddingLeft="0">
-                {menuItem.map(({ label, url, children }, i) => (
-                    <ListItem key={i}>
-                        <LinkBox>
-                            <NextLink href={url} passHref>
-                                {label}
-                            </NextLink>
-                        </LinkBox>
-                        {children && (
-                            <List paddingLeft="15px">
-                                {children.map(({ label, url }, i) => (
-                                    <ListItem key={i}>
-                                        <LinkBox>
-                                            <NextLink href={url} passHref>
-                                                {label}
-                                            </NextLink>
-                                        </LinkBox>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        )}
-                    </ListItem>
-                ))}
-            </List>
+            {item.name} ▼{createMenu(item.children)}
         </>
     );
-}
+    return (
+        <List paddingLeft="25px">
+            {items?.map((item, i) => {
+                const { children } = item;
+                return (
+                    <ListItem key={i}>
+                        {!children ? withoutChildren(item) : withChildren(item)}
+                    </ListItem>
+                );
+            })}
+        </List>
+    );
+};
 
-export default memo(Menu);
+export default function Menu({ menuItems }) {
+    return createMenu(menuItems);
+}

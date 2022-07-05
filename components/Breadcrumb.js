@@ -7,7 +7,7 @@ export default function Breadcrumbs() {
     const current = router.asPath.split("/").pop();
 
     return (
-        <Breadcrumb separator=">">
+        <Breadcrumb separator=">" margin="0" color="white" padding="0 15px">
             {router.asPath === "/" && (
                 <BreadcrumbItem>
                     <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
@@ -16,7 +16,7 @@ export default function Breadcrumbs() {
             {slug.map((link, i) => (
                 <BreadcrumbItem key={i}>
                     <BreadcrumbLink href={`/${slug.slice(i).join("/")}`}>
-                        {link}({i})
+                        {link}
                     </BreadcrumbLink>
                 </BreadcrumbItem>
             ))}

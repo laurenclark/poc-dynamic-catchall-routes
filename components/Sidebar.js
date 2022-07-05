@@ -6,7 +6,7 @@ function Sidebar({ children }) {
         <Box
             position="absolute"
             top="0"
-            height="calc(100vh - 100px)"
+            height="100vh"
             width="350px"
             sx={{ fontWeight: "bold" }}>
             <Box
@@ -14,14 +14,11 @@ function Sidebar({ children }) {
                 overflowY="scroll"
                 width="100%"
                 height="100%"
-                paddingX="5px"
-                color="orange">
-                <Box paddingTop="20px" paddingX="15px" marginBottom="20px">
-                    {children}
-                </Box>
+                paddingX="5px">
+                {children}
             </Box>
         </Box>
     );
 }
 
-export default memo(Sidebar);
+export default Sidebar;

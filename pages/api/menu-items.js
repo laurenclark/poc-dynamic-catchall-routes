@@ -1,30 +1,30 @@
 export default function handler(req, res) {
     res.status(200).json([
         {
-            label: "Dashboard",
+            name: "Dashboard",
             url: "/",
             children: []
         },
         {
-            label: "One",
+            name: "One",
             url: "/one",
             children: [
                 {
-                    label: "One - Child One",
+                    name: "One - Child One",
                     url: "/one/child-one",
                     children: [
                         {
-                            label: "One - Child One - Child One",
+                            name: "One - Child One - Child One",
                             url: "/one/child-one"
                         }
                     ]
                 },
                 {
-                    label: "One - Child Two",
+                    name: "One - Child Two",
                     url: "/one/child-two",
                     children: [
                         {
-                            label: "One - Child Two - Child One",
+                            name: "One - Child Two - Child One",
                             url: "/one/child-two/child-one"
                         }
                     ]
@@ -32,35 +32,35 @@ export default function handler(req, res) {
             ]
         },
         {
-            label: "Two",
+            name: "Two",
             url: "/two",
             children: []
         },
         {
-            label: "Three",
+            name: "Three",
             url: "/three",
             children: []
         },
         {
-            label: "Four",
+            name: "Four",
             url: "/four",
             children: [
                 {
-                    label: "Four - Child One",
+                    name: "Four - Child One",
                     url: "/four/child-one",
                     children: [
                         {
-                            label: "Four - Child One - Child One",
+                            name: "Four - Child One - Child One",
                             url: "/four/child-one/child-one"
                         }
                     ]
                 },
                 {
-                    label: "Four - Child Two",
+                    name: "Four - Child Two",
                     url: "/four/child-two",
                     children: [
                         {
-                            label: "Four - Child Two - Child One",
+                            name: "Four - Child Two - Child One",
                             url: "/four/child-two/child-one"
                         }
                     ]
